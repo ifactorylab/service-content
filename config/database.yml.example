@@ -1,0 +1,16 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: service_development
+  pool: 5
+  username: minsikzzang
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: service_test
+  pool: 5
+  username: minsikzzang
+  password:
+
