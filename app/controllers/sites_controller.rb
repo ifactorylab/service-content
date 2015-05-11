@@ -8,6 +8,6 @@ class SitesController < ApplicationController
   private
 
   def set_site
-    @site = Site.find(params[:id])
+    @site ||= Site.find(params[:id])
   end
 end

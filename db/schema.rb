@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318002123) do
+ActiveRecord::Schema.define(version: 20150510233111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,16 @@ ActiveRecord::Schema.define(version: 20150318002123) do
     t.datetime "updated_at",              null: false
   end
 
+  create_table "contents", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "page_id"
+    t.integer  "order"
+    t.string   "title"
+    t.text     "description"
+    t.string   "image_url"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "hours", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "business_id",              null: false
     t.string   "day",                      null: false
@@ -40,6 +50,16 @@ ActiveRecord::Schema.define(version: 20150318002123) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.string   "text",        default: ""
+  end
+
+  create_table "pages", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "site_id"
+    t.integer  "order"
+    t.string   "title"
+    t.string   "description"
+    t.string   "background_url"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "partners", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|

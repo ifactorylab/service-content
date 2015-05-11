@@ -1,5 +1,6 @@
 class Site < ActiveRecord::Base
   has_one :business
+  has_many :pages
 
   def readonly?
     true
@@ -15,8 +16,8 @@ class Site < ActiveRecord::Base
                             content2_desc: "We bake every morning and will always have fresh cakes, pastries and muffins on hand. (CONTENT_DESC2)",
                             content3_title: "Food (CONTENT TITLE3)",
                             content3_desc: "Seasonal and simple. Our menu is designed with clean, tasty flavours in mind. (CONTENT_DESC3)",
-                            title1: "FOOD & drink (TITLE1)",
-                            title2: "our menu (TITLE2)",
+                            title1: "FOOD & DRINK (TITLE1)",
+                            title2: "OUR MENU (TITLE2)",
                             title3: "CONTACT US (TITLE3)",
                             title_desc1: "ph. 075 6542 8714 (TITLE_DESC1)",
                             title_desc2: "Seasonal and simple food done well. (TITLE_DESC2)",
