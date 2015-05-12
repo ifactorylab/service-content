@@ -3,7 +3,7 @@ class ContentsController < ApplicationController
   before_action :set_content, :only => :update
 
   def index
-    render json: { pages: @page.contents.order(order: :asc) }, status: 200
+    render json: { contents: @page.contents.order(order: :asc) }, status: 200
   end
 
   def show
