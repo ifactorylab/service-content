@@ -3,6 +3,6 @@ class Page < ActiveRecord::Base
   has_many :contents
 
   def to_h
-    hash = self.attributes.merge({ contents: contents.sort { |a,b| a.order <=> b.order })
+    self.attributes.merge({ contents: contents.sort { |a,b| a.order <=> b.order } })
   end
 end
