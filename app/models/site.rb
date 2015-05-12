@@ -30,8 +30,8 @@ class Site < ActiveRecord::Base
                             intro_img4: "/layouts/1/eggs-hash.jpg" }).except("description")
     page_infos = {}
     pages.each do |page|
-      page_infos[("title" + (page.order.to_i + 1)).to_sym] = page.title
-      page_infos[("title_desc" + (page.order.to_i + 1)).to_sym] = page.description
+      page_infos[("title" + (page.order.to_i + 1).to_s).to_sym] = page.title
+      page_infos[("title_desc" + (page.order.to_i + 1).to_s).to_sym] = page.description
     end
     hash.merge(page_infos)
   end
