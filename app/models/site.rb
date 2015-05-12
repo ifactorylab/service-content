@@ -9,7 +9,9 @@ class Site < ActiveRecord::Base
   def to_h
     # descriptions = self.description.split("\n").reject{ |n| n == "" }
     hash = self.attributes.merge({ business: business.to_h,
-                                   pages: pages.sort { |a,b| a.order <=> b.order }.map { |p| p.to_h }
+                                   pages: pages.sort { |a,b| a.order <=> b.order }.map { |p| p.to_h },
+                                   description: self.description.split("\n").reject{ |n| n == "" }
+                                  }).except("description")
                             # descriptions: descriptions,
                             # content1_title: "Coffee (CONTENT TITLE1)",
                             # content1_desc: "We use coffee from Cup in Woolloongabba. They roast a seasonal blend just for us and we also offer single origin espresso from them. (CONTENT_DESC1)",
@@ -29,23 +31,6 @@ class Site < ActiveRecord::Base
                             # intro_img2: "/layouts/1/espresso.jpg",
                             # intro_img3: "/layouts/1/baking.jpg",
                             # intro_img4: "/layouts/1/eggs-hash.jpg"
-                            }).except("description")
-    pages_body = {}
-    contents_body = {}
-    pages.each do |page|
-      id = (page.order.to_i + 1).to_s
-      pages_body["title#{id}".to_sym] = page.title
-      pages_body["title_desc#{id}".to_sym] = page.description
-      pages_body["main_background_img#{id}".to_sym] = page.background_url
 
-      page.contents.each do |content|
-        order = (content.order.to_i + 1).to_s
-        contents_body["content#{order}_title".to_sym] = content.title
-        contents_body["content#{order}_desc".to_sym] = content.description.split("\n").reject{ |n| n == "" }
-        contents_body["intro_img#{order}".to_sym] = content.image_url
-      end
-    end
-    hash.merge!(pages_body)
-    hash.merge!(contents_body)
   end
 end
