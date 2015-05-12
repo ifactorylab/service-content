@@ -4,7 +4,7 @@ class PagesController < ApplicationController
 
   # curl -v -XGET localhost:3000/sites/2a014646-ca54-4cdb-b004-76be3383cf0b/pages -H 'Venice-Authorization: cee3eb61-2435-4a28-b422-9ebfacc8dbec'
   def index
-    render json: { pages: @site.pages }, status: 200
+    render json: { pages: @site.pages.order(order: :asc) }, status: 200
   end
 
   def show
