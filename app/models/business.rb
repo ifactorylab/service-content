@@ -7,7 +7,7 @@ class Business < ActiveRecord::Base
   end
 
   def to_h
-    self.attributes.merge({ hours: Hour.to_day_h(hours) })
+    self.attributes.merge({ hours: Hour.to_day_h(hours) }).except("site_id")
   end
 
 end
