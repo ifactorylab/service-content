@@ -7,6 +7,28 @@ class Site < ActiveRecord::Base
   end
 
   def to_h
+    if pages.count == 0
+      # If there's no page exist, we need to generate them
+      pages << Page.create(
+        :site_id => id,
+        :order => 0,
+        :title => "FOOD & DRINK",
+        :description => "ph. 075 6542 8714",
+        :background_url => "/layouts/1/table1.jpg")
+      pages << Page.create(
+        :site_id => id,
+        :order => 1,
+        :title => "OUR MENU",
+        :description => "Seasonal and simple food done well.",
+        :background_url => "/layouts/1/french-toast.jpg")
+      pages << Page.create(
+        :site_id => id,
+        :order => 2,
+        :title => "CONTACT US",
+        :description => "",
+        :background_url => "/layouts/1/table1-pov.jpg")
+    end
+
     # descriptions = self.description.split("\n").reject{ |n| n == "" }
     hash = self.attributes.merge({ business: business.to_h,
                                    pages: pages.sort { |a,b| a.order <=> b.order }.map { |p| p.to_h },
