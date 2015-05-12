@@ -7,9 +7,9 @@ class Site < ActiveRecord::Base
   end
 
   def to_h
-    descriptions = self.description.split("\n").reject{ |n| n == "" }
+    # descriptions = self.description.split("\n").reject{ |n| n == "" }
     hash = self.attributes.merge({ business: business.to_h,
-                            descriptions: descriptions,
+                            # descriptions: descriptions,
                             # content1_title: "Coffee (CONTENT TITLE1)",
                             # content1_desc: "We use coffee from Cup in Woolloongabba. They roast a seasonal blend just for us and we also offer single origin espresso from them. (CONTENT_DESC1)",
                             # content2_title: "Baking (CONTENT TITLE2)",
