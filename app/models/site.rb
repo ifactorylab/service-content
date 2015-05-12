@@ -39,9 +39,9 @@ class Site < ActiveRecord::Base
 
       page.contents.each do |content|
         order = (content.order.to_i + 1).to_s
-        contents_body["content#{id}_title".to_sym] = content.title
-        contents_body["content#{id}_desc".to_sym] = content.description
-        contents_body["intro_img#{id}".to_sym] = content.image_url
+        contents_body["content#{order}_title".to_sym] = content.title
+        contents_body["content#{order}_desc".to_sym] = content.description.split("\n").reject{ |n| n == "" }
+        contents_body["intro_img#{order}".to_sym] = content.image_url
       end
     end
     hash.merge!(pages_body)
