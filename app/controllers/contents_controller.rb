@@ -34,7 +34,8 @@ class ContentsController < ApplicationController
   end
 
   def update_params
-    hash = params.require(:content).permit(:title, :description, :image_url, :order)
+    hash = params.require(:content).permit(:title, :image_url, :order)
+    hash.merge!(params.require(:content).permit(:description))
     hash.each_value { |value| value.squish! if value.kind_of? String }
     hash
   end
