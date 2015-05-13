@@ -37,6 +37,6 @@ class Page < ActiveRecord::Base
 
     self.attributes.merge({
       contents: contents.sort { |a,b| a.order <=> b.order }.map { |p| p.to_h }
-    }).except("site_id")
+    }).except("site_id", "background")
   end
 end

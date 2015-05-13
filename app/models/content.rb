@@ -6,6 +6,6 @@ class Content < ActiveRecord::Base
 
   def to_h
     self.attributes.merge({ description: description.split("\n").reject{ |n| n == "" } })
-      .except("page_id", "description")
+      .except("page_id", "description", "image")
   end
 end

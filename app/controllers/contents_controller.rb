@@ -16,8 +16,8 @@ class ContentsController < ApplicationController
   def upload
     @content.image = params[:file]
     @content.save!
-    puts @content.image.url
-    puts @content.image.current_path
+    @content.image_url = @page.image.url
+    @content.save!
   end
 
   def update

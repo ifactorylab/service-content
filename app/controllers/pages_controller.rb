@@ -13,12 +13,12 @@ class PagesController < ApplicationController
   def create
   end
 
-  # curl -v -XPUT -F "file=@/Users/minkim/Desktop/download.jpeg" "http://localhost:3000/pages/70566ae1-3f4d-41fb-baa7-89b7c513824c/background"
+  # curl -v -XPUT -F "file=@/Users/minkim/Desktop/download.jpeg" "http://localhost:3000/pages/c5afc3fc-9ab7-4191-a7f9-e735f4132aab/background"
   def upload
     @page.background = params[:file]
     @page.save!
-    puts @page.background.url
-    puts @page.background.current_path
+    @page.background_url = @page.background.url
+    @page.save!
   end
 
   def update
