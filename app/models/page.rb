@@ -37,7 +37,10 @@ class Page < ActiveRecord::Base
 
     self.attributes.merge({
       contents: contents.sort { |a,b| a.order <=> b.order }.map { |p| p.to_h },
-      background: { large_url: background.large.url }
+      background: {
+        large_url: background.large.url,
+        url: background.url
+      }
     }).except("site_id", "background")
   end
 end

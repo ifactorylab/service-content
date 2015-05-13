@@ -7,7 +7,10 @@ class Content < ActiveRecord::Base
   def to_h
     self.attributes.merge({
       description: description.split("\n").reject{ |n| n == "" },
-      image: { large_url: image.large.url }
-      }).except("page_id", "description", "image")
+      image: {
+        large_url: image.large.url,
+        url: image.url
+      }
+    }).except("page_id", "description", "image")
   end
 end

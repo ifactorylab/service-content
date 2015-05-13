@@ -17,8 +17,6 @@ class PagesController < ApplicationController
   def upload
     @page.background = params[:file]
     @page.save!
-    @page.background_url = @page.background.url
-    @page.save!
   end
 
   def update
