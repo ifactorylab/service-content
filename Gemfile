@@ -6,6 +6,10 @@ gem 'rails', '4.2.0'
 gem 'rails-api'
 gem 'rack-cors', require: 'rack/cors'
 gem 'rack-rewrite', require: 'rack/rewrite'
+gem 'carrierwave'
+gem 'rmagick'
+gem "fog-aws"
+# gem 'uuid'
 
 # Use postgresql as the database for Active Record
 gem 'pg'

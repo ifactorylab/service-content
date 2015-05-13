@@ -1,6 +1,10 @@
+require 'carrierwave/orm/activerecord'
+require './app/uploaders/background_uploader'
+
 class Page < ActiveRecord::Base
   belongs_to :site
   has_many :contents
+  mount_uploader :background, BackgroundUploader
 
   def to_h
     if contents.count == 0

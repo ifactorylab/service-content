@@ -1,6 +1,6 @@
 class ContentsController < ApplicationController
   before_action :set_page, :only => :index
-  before_action :set_content, :only => :update
+  before_action :set_content, :only => [:update, :upload]
 
   def index
     render json: { contents: @page.contents.order(order: :asc) }, status: 200
@@ -10,6 +10,14 @@ class ContentsController < ApplicationController
   end
 
   def create
+  end
+
+  # curl -v -XPUT -F "file=@/Users/minkim/Desktop/download.jpeg" "http://localhost:3000/contents/70566ae1-3f4d-41fb-baa7-89b7c513824c/image"
+  def upload
+    @content.image = params[:file]
+    @content.save!
+    puts @content.image.url
+    puts @content.image.current_path
   end
 
   def update
