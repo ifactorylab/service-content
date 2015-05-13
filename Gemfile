@@ -8,7 +8,7 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'rack-rewrite', require: 'rack/rewrite'
 gem 'carrierwave'
 gem 'rmagick'
-gem "fog-aws"
+gem "fog"
 gem 'uuidtools'
 
 # Use postgresql as the database for Active Record

@@ -1,5 +1,4 @@
 require 'carrierwave/orm/activerecord'
-require './app/uploaders/background_uploader'
 
 class Page < ActiveRecord::Base
   belongs_to :site
