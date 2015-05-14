@@ -9,6 +9,7 @@ class Content < ActiveRecord::Base
       description: description.split("\n").reject{ |n| n == "" },
       image: {
         large_url: image.large.url,
+        small_url: image.small.url,
         url: image.url
       }
     }).except("page_id", "description", "image")

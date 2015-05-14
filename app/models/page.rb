@@ -38,6 +38,7 @@ class Page < ActiveRecord::Base
       contents: contents.sort { |a,b| a.order <=> b.order }.map { |p| p.to_h },
       background: {
         large_url: background.large.url,
+        small_url: background.small.url,
         url: background.url
       }
     }).except("site_id", "background")
