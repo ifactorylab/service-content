@@ -12,6 +12,6 @@ class Style < ActiveRecord::Base
         small_url: logo.small.url,
         url: logo.url
       }
-    })
+    }).except("site_id")
   end
 end
