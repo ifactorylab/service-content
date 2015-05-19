@@ -10,6 +10,7 @@ class Style < ActiveRecord::Base
     self.attributes.merge({
       logo: {
         small_url: logo.small.url,
+        thumb_url: logo.thumb.url,
         url: logo.url
       }
     }).except("site_id")
