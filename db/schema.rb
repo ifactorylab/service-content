@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150513185838) do
+ActiveRecord::Schema.define(version: 20150519205718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,18 @@ ActiveRecord::Schema.define(version: 20150513185838) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "image"
+  end
+
+  create_table "designs", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "site_id"
+    t.string   "title"
+    t.string   "logo"
+    t.string   "header_background_color"
+    t.string   "header_title_color"
+    t.string   "footer_background_color"
+    t.string   "footer_title_color"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "hours", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
@@ -95,6 +107,18 @@ ActiveRecord::Schema.define(version: 20150513185838) do
     t.string   "app_url"
     t.text     "description", default: ""
     t.string   "status",      default: "development"
+  end
+
+  create_table "styles", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "site_id"
+    t.string   "title"
+    t.string   "logo"
+    t.string   "header_background_color"
+    t.string   "header_title_color"
+    t.string   "footer_background_color"
+    t.string   "footer_title_color"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
 end

@@ -26,10 +26,10 @@ class Site < ActiveRecord::Base
         :description => "")
     end
 
-    # descriptions = self.description.split("\n").reject{ |n| n == "" }
     hash = self.attributes.merge({ business: business.to_h,
                                    pages: pages.sort { |a,b| a.order <=> b.order }.map { |p| p.to_h },
                                    description: self.description.split("\n").reject{ |n| n == "" }
+                                   style: self.style ? self.style.to_h : nil
                                   }).except("description")
   end
 end
