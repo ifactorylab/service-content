@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/ifactorylab/gem_auth.git
+  revision: 7582342a22a38c22f3e82b9c84f7861f4125b840
+  specs:
+    gem_auth (0.0.1)
+      uuidtools (>= 2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -273,6 +280,7 @@ DEPENDENCIES
   carrierwave
   factory_girl_rails
   fog
+  gem_auth!
   pg
   pry
   puma
