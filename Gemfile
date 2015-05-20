@@ -11,6 +11,8 @@ gem 'rmagick'
 gem "fog"
 gem 'uuidtools'
 
+gem 'gem_auth', git: 'https://github.com/ifactorylab/gem_auth.git'
+
 # Use postgresql as the database for Active Record
 gem 'pg'
 
