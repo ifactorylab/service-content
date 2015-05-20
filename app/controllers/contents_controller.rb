@@ -1,6 +1,7 @@
 class ContentsController < ApplicationController
   before_action :set_page, :only => :index
   before_action :set_content, :only => [:update, :upload]
+  before_action :authorize_partner
 
   def index
     render json: { contents: @page.contents.order(order: :asc) }, status: 200
