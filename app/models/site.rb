@@ -2,6 +2,7 @@ class Site < ActiveRecord::Base
   has_one :business
   has_one :style
   has_many :pages
+  has_many :categories
 
   def readonly?
     true
@@ -30,7 +31,8 @@ class Site < ActiveRecord::Base
     hash = self.attributes.merge({ business: business.to_h,
                                    pages: pages.sort { |a,b| a.order <=> b.order }.map { |p| p.to_h },
                                    description: self.description.split("\n").reject{ |n| n == "" },
-                                   style: self.style ? self.style.to_h : nil
+                                   style: self.style ? self.style.to_h : nil,
+                                   products: self.categories.map { |c| c.to_h }
                                   }).except("description")
   end
 end
