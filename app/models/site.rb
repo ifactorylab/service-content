@@ -24,6 +24,11 @@ class Site < ActiveRecord::Base
       pages << Page.create(
         :site_id => id,
         :order => 2,
+        :title => "RESERVATION",
+        :description => "We accept a limited number of reservations up to one month in advance for parties of up to ten guests.")
+      pages << Page.create(
+        :site_id => id,
+        :order => 3,
         :title => "CONTACT US",
         :description => "")
     end

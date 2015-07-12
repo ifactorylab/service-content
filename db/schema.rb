@@ -11,12 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519205718) do
+ActiveRecord::Schema.define(version: 20150712222855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
   enable_extension "hstore"
+
+  create_table "bookings", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.integer  "number_of_person"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone_number"
+    t.text     "note"
+    t.string   "site_id"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "status",            default: "requested"
+    t.boolean  "partner_notified",  default: false
+    t.boolean  "customer_notified", default: false
+    t.datetime "datetime"
+    t.integer  "gmt_offset",        default: 0
+  end
 
   create_table "businesses", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "site_id",    default: "", null: false
@@ -30,6 +47,13 @@ ActiveRecord::Schema.define(version: 20150519205718) do
     t.string   "country",    default: ""
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "categories", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "site_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "contents", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
@@ -64,14 +88,25 @@ ActiveRecord::Schema.define(version: 20150519205718) do
     t.string   "text",        default: ""
   end
 
+  create_table "images", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "file"
+    t.integer  "type_id"
+    t.string   "content_type"
+    t.integer  "file_size"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "file_name"
+  end
+
   create_table "pages", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "site_id"
     t.integer  "order"
     t.string   "title"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "background"
+    t.boolean  "enabled",     default: true
   end
 
   create_table "partners", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
@@ -96,6 +131,32 @@ ActiveRecord::Schema.define(version: 20150519205718) do
   add_index "partners", ["email"], name: "index_partners_on_email", unique: true, using: :btree
   add_index "partners", ["reset_password_token"], name: "index_partners_on_reset_password_token", unique: true, using: :btree
   add_index "partners", ["username"], name: "index_partners_on_username", unique: true, using: :btree
+
+  create_table "product_images", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "image"
+    t.integer  "order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "image_id"
+    t.string   "image_name"
+    t.string   "product_id"
+  end
+
+  create_table "products", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "category_id"
+    t.string   "name"
+    t.text     "description"
+    t.float    "price"
+    t.float    "discount"
+    t.string   "unit"
+    t.string   "status"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "site_id"
+    t.string   "image_id"
+    t.string   "image"
+    t.string   "image_name"
+  end
 
   create_table "sites", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
     t.string   "domain"
