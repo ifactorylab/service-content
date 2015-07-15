@@ -1,6 +1,7 @@
 class ContentsController < ApplicationController
   before_action :set_page, :only => :index
   before_action :set_content, :only => [:update, :upload]
+  before_action :set_site, :only => :booking
   before_action :authorize_partner
 
   def index
@@ -8,6 +9,16 @@ class ContentsController < ApplicationController
   end
 
   def show
+  end
+
+  # curl -v -XGET localhost:3000/sites/2a014646-ca54-4cdb-b004-76be3383cf0b/contents/booking
+  def booking
+    page = @site.pages.where(order: 2).first
+    unless page
+      head 404
+    else
+      render json: { content: Content.where(page_id: page.id, order: 0).first }
+    end
   end
 
   def create
@@ -25,6 +36,10 @@ class ContentsController < ApplicationController
   end
 
   private
+
+  def set_site
+    @site ||= Site.find(params[:id])
+  end
 
   def set_page
     @page ||= Page.find(params[:page_id])

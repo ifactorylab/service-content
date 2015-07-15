@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   patch 'contents/:id', to: 'contents#update'
   patch 'contents/:id/image', to: 'contents#upload'
 
+  get 'sites/:id/contents/booking', to: 'contents#booking'
 end
