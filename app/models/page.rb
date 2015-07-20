@@ -7,7 +7,7 @@ class Page < ActiveRecord::Base
 
   def to_h
     if contents.count == 0
-      if page.order == 0
+      if self.order == 0
         # If there's no page exist, we need to generate them
         contents << Content.create(
           :page_id => id,
@@ -29,12 +29,17 @@ class Page < ActiveRecord::Base
           :order => 3,
           :title => "Food",
           :description => "Seasonal and simple. Our menu is designed with clean, tasty flavours in mind.")
-      elsif page.order == 3
+      elsif self.order == 3
         contents << Content.create(
           :page_id => id,
           :order => 0,
           :title => "RESERVATIONS",
           :description => "Call  (020) 723-3170 from 9a – 11p daily, or book online.\nReservations required for parties of 4 or more.")
+        contents << Content.create(
+          :page_id => id,
+          :order => 1,
+          :title => "Make a Reservation",
+          :description => "Find a table")
       end
     end
 

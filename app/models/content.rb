@@ -3,6 +3,7 @@ require 'carrierwave/orm/activerecord'
 class Content < ActiveRecord::Base
   belongs_to :page
   mount_uploader :image, ImageUploader
+  has_many :options
 
   def to_h
     self.attributes.merge({
@@ -11,7 +12,8 @@ class Content < ActiveRecord::Base
         large_url: image.large.url,
         small_url: image.small.url,
         url: image.url
-      }
+      },
+      options: options.map { |option| option.to_h }
     }).except("page_id", "description", "image")
   end
 end
