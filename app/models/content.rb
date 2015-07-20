@@ -13,7 +13,7 @@ class Content < ActiveRecord::Base
         small_url: image.small.url,
         url: image.url
       },
-      options: options.map { |option| option.to_h }
+      options: options.map { |option| option.to_h }.reduce({}, :merge)
     }).except("page_id", "description", "image")
   end
 end
