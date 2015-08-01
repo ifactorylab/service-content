@@ -25,7 +25,7 @@ module ServiceContent
 
     config.middleware.insert_before(ActionDispatch::Static, Rack::Cors) do
       allow do
-        origins 'localhost:3000', /localhost(:\d+)?/, /http:\/\/127\.0\.0\.1(:\d+)?/, /http:\/\/192\.168\.0\.\d{1,3}(:\d+)?/, /(.*)herokuapp\.com(:\d+)?$/
+        origins 'localhost:3000', /localhost(:\d+)?/, /http:\/\/127\.0\.0\.1(:\d+)?/, /http:\/\/192\.168\.0\.\d{1,3}(:\d+)?/, /(.*)herokuapp\.com(:\d+)?$/, /(.*)ur-bazaar\.com(:\d+)?$/
         resource '*', :headers => :any, :methods => [:get, :post, :options, :patch, :delete]
       end
     end
