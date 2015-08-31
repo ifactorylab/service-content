@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150804210118) do
+ActiveRecord::Schema.define(version: 20150815213329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,14 @@ ActiveRecord::Schema.define(version: 20150804210118) do
     t.string   "footer_title_color"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "emails", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
+    t.string   "site_id"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "type_id"
   end
 
   create_table "hours", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|
@@ -170,13 +178,14 @@ ActiveRecord::Schema.define(version: 20150804210118) do
     t.string   "domain"
     t.string   "partner_id"
     t.string   "layout_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "name"
     t.string   "app_url"
-    t.text     "description", default: ""
-    t.string   "status",      default: "development"
-    t.text     "keywords",    default: ""
+    t.text     "description",    default: ""
+    t.string   "status",         default: "development"
+    t.text     "keywords",       default: ""
+    t.string   "ga_tracking_id", default: ""
   end
 
   create_table "styles", id: :uuid, default: "uuid_generate_v4()", force: :cascade do |t|

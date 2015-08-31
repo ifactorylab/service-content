@@ -8,7 +8,7 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'rack-rewrite', require: 'rack/rewrite'
 gem 'redis'
 gem 'carrierwave'
-gem 'rmagick'
+gem 'mini_magick'
 gem "fog"
 gem 'uuidtools'
 

@@ -3,8 +3,8 @@
 class BackgroundUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  # include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   # storage :file
@@ -43,6 +43,14 @@ class BackgroundUploader < CarrierWave::Uploader::Base
   version :large do
     process :resize_to_fit => [2448, 1632]
   end
+
+  def auto_orient
+    manipulate! do |img|
+      img.tap(&:auto_orient)
+    end
+  end
+
+  process :auto_orient
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

@@ -24,7 +24,7 @@ class ContentsController < ApplicationController
   def create
   end
 
-  # curl -v -XPUT -F "file=@/Users/minkim/Desktop/download.jpeg" "http://localhost:3000/contents/70566ae1-3f4d-41fb-baa7-89b7c513824c/image"
+  # curl -v -XPATCH -F "file=@/Users/minsikzzang/Desktop/download.jpeg" "http://localhost:3000/contents/70566ae1-3f4d-41fb-baa7-89b7c513824c/image"
   def upload
     @content.image = params[:file]
     @content.save!
