@@ -33,7 +33,7 @@ module ServiceContent
                 /(.*)ur-bazaar\.com(:\d+)?$/,
                 /(.*)westdriving\.co.uk(:\d+)?$/,
                 /(.*)westdriving\.uk(:\d+)?$/,
-                /(.*)channelfish\.uk(:\d+)?$/
+                /(.*)channelfish\.co.uk(:\d+)?$/
         resource '*', :headers => :any, :methods => [:get, :post, :options, :patch, :delete]
       end
     end
